@@ -17,8 +17,7 @@ void heapify(int a[],int n,int i){
 
 void heapsort(int a[],int n){
     int t=0,i;
-    for (i=n/2;i>0;i--) heapify(a,n,i);
-
+    for (i=n/2;i>=0;i--) heapify(a,n,i);
     for (i=n;i>0;i--){
             t=a[i];
             a[i]=a[0];
@@ -28,9 +27,9 @@ void heapsort(int a[],int n){
 }
 
 int main(){
-	int a[]={23,35,345,7647,2,356,78,23,5,5764,657657,345,365235,542,88,234},i;
-	heapsort(a,15);
-	for(i=0;i<16;i++)
+	int a[]={23,35,345,7647,2,356,78,23,5},i;
+	heapsort(a,8);
+	for(i=0;i<9;i++)
 		printf("%d ",a[i]);
 	printf("\n");
 	return 0;

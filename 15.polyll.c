@@ -5,7 +5,7 @@ struct Node{
 	int co;
 	int ex;
 	struct Node *next;
-}*head,*ptr;
+};
 
 int main(){
 	int c,e;
