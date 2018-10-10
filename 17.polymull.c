@@ -1,15 +1,81 @@
 #include<stdio.h>
 #include <stdlib.h>
 
+struct Node{
+	int co;
+	int ex;
+	struct Node *next;
+};
+
 int main(){
-	long a[5],b[5],c[10],i,j;
-	for(i=0;i<10;i++) c[i]=0;
-	printf("enter a,b,c...in the pollynomical ax^0+bx^2....jX^9\n");
-	for(i=0;i<5;i++) scanf("%ld",a+i);
-	for(i=0;i<5;i++) scanf("%ld",b+i);
-	for(i=0;i<5;i++) for (j=0;j<5;j++) c[i+j]+=a[i]*b[j];
-	for(i=0;i<10;i++) printf("%ldx^%ld ",c[i],i);
+	int c,e;
+	struct Node *head1,*head2,*head3,*ptr,*ptr2,*ptr3,*pre;
+	head1=(struct Node*)malloc(sizeof(struct Node));
+	head1->next=NULL;
+	head2=(struct Node*)malloc(sizeof(struct Node));
+	head2->next=NULL;
+	head3=(struct Node*)malloc(sizeof(struct Node));
+	head3->next=NULL;
+
+	ptr=head1;
+	do{
+		scanf("%d %d",&c,&e);
+		ptr->next= (struct Node*)malloc(sizeof(struct Node));
+		ptr->next->co=c;
+		ptr->next->ex=e;
+		ptr=ptr->next;
+		ptr->next=NULL;
+
+	}while(e>0);
+
+	ptr=head2;
+	do{
+		scanf("%d %d",&c,&e);
+		ptr->next= (struct Node*)malloc(sizeof(struct Node));
+		ptr->next->co=c;
+		ptr->next->ex=e;
+		ptr=ptr->next;
+		ptr->next=NULL;
+
+	}while(e>0);
+
+
+	for(ptr=head1->next;ptr!=NULL;ptr=ptr->next){
+		for(ptr2=head2->next;ptr2!=NULL;ptr2=ptr2->next){
+			c=ptr->co*ptr2->co;
+			e=ptr->ex+ptr2->ex;
+			pre=head3;
+			ptr3=head3->next;
+			while(1==1){
+				if (ptr3==NULL){
+					pre->next=(struct Node*)malloc(sizeof(struct Node));
+					pre=pre->next;
+					pre->co=c;
+					pre->ex=e;
+					pre->next=NULL;
+					break;
+				}
+				if(ptr3->ex<e){pre=ptr3;ptr3=ptr3->next;continue;}
+				if(ptr3->ex==e){ptr3->co+=c;break;}
+				if(ptr3->ex>e){
+					pre->next=(struct Node*)malloc(sizeof(struct Node));
+					pre=pre->next;
+					pre->co=c;
+					pre->ex=e;
+					pre->next=ptr3;
+					break;
+				}
+			}
+		}
+	}
+
+	ptr=head3->next;
+	while(ptr!=NULL){
+		printf("%dx^%d ",ptr->co,ptr->ex);
+		ptr=ptr->next;
+	}
 	printf("\n");
+
 
 	return 0;
 }
