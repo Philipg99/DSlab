@@ -3,42 +3,43 @@
 
 struct Node{
 	int val;
-	struct Node *next;
-}*head,*ptr;
+	struct Node *left;
+	struct Node *right;
+};
 
 int main(){
 	char x;
 	int i;
 	struct Node *head,*ptr;
-	head->next=NULL;
+	head=(struct Node*)malloc(sizeof(struct Node));
+	head->right=head;
+	head->left=head;
 	
 	do{
 		scanf("%c",&x);
 		switch(x){
-			case 's':
-				scanf("%d",&i);
-				ptr=head->next;
-				while (ptr!=NULL){ if (ptr->val==i) printf("found\n"); ptr=ptr->next;}
-				break;
 			case 'i':
 				scanf("%d",&i);
-				ptr=head;
-				while (ptr->next!=NULL) ptr=ptr->next;
-				ptr->next= (struct Node*)malloc(sizeof(struct Node));
-				ptr->next->val=i;
+				ptr=head->right;
+				head->right= (struct Node*)malloc(sizeof(struct Node));
+				head->right->val=i;
+				ptr->left=head->right;
+				head->right->left=head;
+				head->right->right=ptr;
 				break;
 			case 'd':
-				ptr=head;
-				while (ptr->next->next!=NULL) ptr=ptr->next;
-				free(ptr->next);
-				ptr->next=NULL;
+				ptr=head->left->left;
+				if (head->left!=head){
+				free(head->left);
+				ptr->right=head;
+				head->left=ptr;}
+				else printf("emptuy queue");
 				break;
 			case 'p':
-			
-				ptr=head->next;
-				while(ptr!=NULL){
+				ptr=head->right;
+				while(ptr!=head){
 					printf("%d ",ptr->val);
-					ptr=ptr->next;
+					ptr=ptr->right;
 				}
 				printf("\n");
 				break;
