@@ -5,12 +5,13 @@ struct Node{
 	int val;
 	struct Node *left;
 	struct Node *right;
-}*head,*ptr;
+};
 
 int main(){
 	char x;
 	int i;
 	struct Node *head,*ptr;
+	head=(struct Node*)malloc(sizeof(struct Node));
 	head->right=head;
 	head->left=head;
 	
