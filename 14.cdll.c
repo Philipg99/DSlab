@@ -38,6 +38,7 @@ int main(){
 				while (ptr->right->right!=head) ptr=ptr->right;
 				free(ptr->right);
 				ptr->right=head;
+				head->left=ptr;
 				break;
 			case 'p':
 			
