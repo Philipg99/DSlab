@@ -10,6 +10,7 @@ struct Node{
 int main(){
 	int c,e;
 	struct Node *head,*ptr;
+	head=(struct Node*)malloc(sizeof(struct Node));
 	head->next=NULL;
 	ptr=head;
 	do{
