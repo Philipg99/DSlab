@@ -22,63 +22,77 @@ struct Node* new(int v,struct Node* i){
 	return ptr;
 }
 
-void heapify(int a[],int n,int i){
-    int large=i,l=2*i+1,r=2*i+2,t=0;
-
-    if (l<=n && a[large]<a[l]) large=l;
-    if (r<=n && a[large]<a[r]) large=r;
-
-    if (large!=i){
-        t=a[i];
-        a[i]=a[large];
-        a[large]=t;
-        if (large<=n/2) heapify(a,n,large);
-    }
-}
-
-void heap(int a[],int n){
-    int t=0,i;
-    for (i=n/2;i>=0;i--) heapify(a,n,i);
-}
-
 void print(struct Node* ptr){
-	printf(" ");
+	
 	if (ptr->left!=NULL) print(ptr->left);
-	printf("%c",ptr->val);
+	printf(" %d ",ptr->val);
 	if (ptr->right!=NULL) print(ptr->right);
-	printf(" ");
 	
 }
 
+void scan(struct Node* ptr,int i){
+	
+	if (ptr->val==i) {printf("found"); return;}
+	if (ptr->val<i) scan(ptr->right,i);
+	else if (ptr->val>=i) scan(ptr->left,i);
+	
+}
+
+
+
+void insert(struct Node* ptr,int i){
+
+	if(ptr->val<i) if (ptr->right!=NULL) insert(ptr->right,i);
+		else ptr->right=new(i,ptr);
+	else if (ptr->left!=NULL) insert(ptr->left,i);
+		else ptr->left=new(i,ptr);
+ 	
+}
+
+struct Node* find(struct Node* ptr,int i){
+	
+	if (ptr->val==i) return ptr;
+	if (ptr->val<i) scan(ptr->right,i);
+	else if (ptr->val>=i) scan(ptr->left,i);
+	
+}
+
+void delete(struct Node* ptr,int i){
+	ptr=find(ptr,i);
+	cur=ptr;
+	while(ptr->right!=NULL) ptr=ptr->right;
+	cur->val=ptr->val;	
+	if (ptr->left!=NULL) ptr->parent->right=ptr->left; 
+	free(ptr);
+}
 int main(){
-	int i , a[100];
-	prinft("enter the number of intial elements")
+	int i ;
+	char x;
 	root=NULL;
 	cur=root;
-	print(root);
 	printf("\n");
 	do{
 		scanf("%c",&x);
 		switch(x){
 			case 's':
 				scanf("%d",&i);
+				scan(root,i);
 				break;
 			case 'i':
 				scanf("%d",&i);
-
+				if (root==NULL) root=new(i,NULL);
+				else insert(root,i);
 				break;
 			case 'd':
-
+				scanf("%d",&i);
+				delete(root,i);
 				break;
 			case 'p':
-			
+				print(root);
 				printf("\n");
 				break;
 		};
 	}while(x!='e');
-
-
-
 	return 0;
 
 }
