@@ -7,15 +7,13 @@
 
 struct Node{
 	int val;
-	struct Node *parent;
 	struct Node *left;
 	struct Node *right;
-}*root,*cur;
+}*root,*pre;
 
-struct Node* new(int v,struct Node* i){
+struct Node* new(int v){
 	struct Node* ptr;
 	ptr=(struct Node*)malloc(sizeof(struct Node));
-	ptr->parent=i;
 	ptr->left=NULL;
 	ptr->right=NULL;
 	ptr->val=v;
@@ -32,7 +30,7 @@ void print(struct Node* ptr){
 
 void scan(struct Node* ptr,int i){
 	
-	if (ptr->val==i) {printf("found"); return;}
+	if (ptr->val==i) {printf("found\n"); return;}
 	if (ptr->val<i) scan(ptr->right,i);
 	else if (ptr->val>=i) scan(ptr->left,i);
 	
@@ -52,24 +50,31 @@ void insert(struct Node* ptr,int i){
 struct Node* find(struct Node* ptr,int i){
 	
 	if (ptr->val==i) return ptr;
-	if (ptr->val<i) scan(ptr->right,i);
-	else if (ptr->val>=i) scan(ptr->left,i);
+	if (ptr->val<i) find(ptr->right,i);
+	else if (ptr->val>=i) find(ptr->left,i);
 	
 }
 
 void delete(struct Node* ptr,int i){
 	ptr=find(ptr,i);
 	cur=ptr;
-	while(ptr->right!=NULL) ptr=ptr->right;
-	cur->val=ptr->val;	
-	if (ptr->left!=NULL) ptr->parent->right=ptr->left; 
-	free(ptr);
+	
+	if (ptr->right!=NULL){
+		ptr=ptr->right;
+		while(ptr->left!=NULL) ptr=ptr->left;
+		cur->val=ptr->val;
+		if (ptr->left!=NULL) ptr->parent->right=ptr->left;
+	}
+	else{
+		ptr->parent->left=ptr->left;
+		free(ptr);
+	}
+	
 }
 int main(){
 	int i ;
 	char x;
 	root=NULL;
-	cur=root;
 	printf("\n");
 	do{
 		scanf("%c",&x);
@@ -80,7 +85,7 @@ int main(){
 				break;
 			case 'i':
 				scanf("%d",&i);
-				if (root==NULL) root=new(i,NULL);
+				if (root==NULL) root=new(i);
 				else insert(root,i);
 				break;
 			case 'd':
