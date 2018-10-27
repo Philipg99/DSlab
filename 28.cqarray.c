@@ -3,63 +3,55 @@
 
 int f=-1,r=-1;
 
-void print(int queue[])
+void print(int a[])
 {
-    int i;
-    printf("\n");
-    if (f > r){
-        for (i = f; i < size; i++) printf("%d ", queue[i]);
-        for (i = 0; i <= r; i++) printf("%d ", queue[i]);
-    }
-    else for (i = f; i <= r; i++) printf("%d ", queue[i]); 
+	int i;
+	if (f>r){
+		for(i=f;i<size;i++) printf("%d ",a[i]);
+		for(i=0;i<=r;i++) printf("%d ",a[i]);
+	}
+	else for (i=f;i<=r;i++) printf("%d ",a[i]);
+	printf("\n");
 }
 
-void deq(int queue[])
+void deq()
 {
-    if (f ==  - 1) printf("Queue is empty ");
-    else if (f == r){
-        printf("\n %d deleted", queue[f]);
-        f = - 1;
-        r = - 1;
-    }
-    else printf("\n %d deleted", queue[f++]);
-
+	if(f!=r) f=(f+1)%size;
+	if (f==r) f=r=-1;
 }
 
-void enq(int queue[],int item)
-{
-    if ((f == 0 && r == size - 1) || (f == r + 1)){ printf("queue is full"); return;}
-    else if (r ==  - 1) { r++; f++; }  
-    else if (r == size - 1 && f > 0) r = 0;
-    else r++;
-    queue[r] = item;
+void enq(int a[],int x)
+{	
+	if (f==-1) {f=r=0;a[0]=x;}
+	else if((r+1)%size!=f) {r=(r+1)%size; a[r]=x;}
 }
 
 
 int main()
 {
-    int n, ch;
-    int queue[size];
+    int n,i;
+    char ch;
+    int a[size]={0,0,0,0,0};
     do
     {
-        printf("\n\n Circular Queue:\n1. Insert \n2. Delete\n3. Display\n0. Exit");
-        printf("\nEnter Choice 0-3? : ");
-        scanf("%d", &ch);
+	getchar();
+        printf("\nInsert Delete Print Exit\n %d %d\n",f,r);
+	for (i=0;i<size;i++) printf("%d ",a[i]); printf("\n");
+        scanf("%c", &ch);
         switch (ch)
         {
-            case 1:
-                printf("\nEnter number: ");
+            case 'i':
                 scanf("%d", &n);
-                enq(queue, n);
+                enq(a, n);
                 break;
-            case 2:
-                deq(queue);
+            case 'd':
+                deq();
                 break;
-            case 3:
-                print(queue);
+            case 'p':
+                print(a);
                 break;
         }
-    }while (ch != 0);
+    }while (ch != 'e');
 }
 
 
