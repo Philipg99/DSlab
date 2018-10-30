@@ -10,6 +10,7 @@ int main(){
 	char x;
 	int i;
 	struct Node *head,*ptr;
+	head=(struct Node*)malloc(sizeof(struct Node));
 	head->next=NULL;
 	
 	do{
