@@ -27,6 +27,7 @@ int main(){
 				while (ptr->next!=NULL) ptr=ptr->next;
 				ptr->next= (struct Node*)malloc(sizeof(struct Node));
 				ptr->next->val=i;
+				ptr->next->next=NULL;
 				break;
 			case 'd':
 				ptr=head;

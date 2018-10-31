@@ -9,7 +9,7 @@ struct Node{
 	int val;
 	struct Node *left;
 	struct Node *right;
-}*root,*pre;
+}*root,*par,*ptr,*tmp;
 
 struct Node* new(int v){
 	struct Node* ptr;
@@ -21,19 +21,19 @@ struct Node* new(int v){
 }
 
 void print(struct Node* ptr){
-	
+	printf("(");
 	if (ptr->left!=NULL) print(ptr->left);
 	printf(" %d ",ptr->val);
 	if (ptr->right!=NULL) print(ptr->right);
-	
+	printf(")");
 }
 
-void scan(struct Node* ptr,int i){
-	
-	if (ptr->val==i) {printf("found\n"); return;}
-	if (ptr->val<i) scan(ptr->right,i);
-	else if (ptr->val>=i) scan(ptr->left,i);
-	
+struct Node* scan(struct Node* ptr,int i){
+	if (ptr!=NULL){
+		if (ptr->val==i) return ptr;
+		if (ptr->val<i) scan(ptr->right,i);
+		else if (ptr->val>=i) scan(ptr->left,i);}
+	else return NULL;
 }
 
 
@@ -41,36 +41,66 @@ void scan(struct Node* ptr,int i){
 void insert(struct Node* ptr,int i){
 
 	if(ptr->val<i) if (ptr->right!=NULL) insert(ptr->right,i);
-		else ptr->right=new(i,ptr);
+		else ptr->right=new(i);
 	else if (ptr->left!=NULL) insert(ptr->left,i);
-		else ptr->left=new(i,ptr);
+		else ptr->left=new(i);
  	
 }
 
-struct Node* find(struct Node* ptr,int i){
-	
-	if (ptr->val==i) return ptr;
-	if (ptr->val<i) find(ptr->right,i);
-	else if (ptr->val>=i) find(ptr->left,i);
-	
-}
 
 void delete(struct Node* ptr,int i){
-	ptr=find(ptr,i);
-	cur=ptr;
-	
+	if (scan(ptr,i)){
+	par=ptr;
+	while (ptr->val!=i){
+		if (ptr->val<i) {par=ptr;ptr=ptr->right;}
+		else if (ptr->val>=i) {ptr=ptr->left;}
+	}
+	}
 	if (ptr->right!=NULL){
-		ptr=ptr->right;
-		while(ptr->left!=NULL) ptr=ptr->left;
-		cur->val=ptr->val;
-		if (ptr->left!=NULL) ptr->parent->right=ptr->left;
+		tmp=ptr->right;
+		par=ptr;
+		if (tmp->left==NULL){
+			ptr->val=tmp->val;
+			ptr->right=tmp->right;
+			free(tmp);
+		}
+		else{
+			while(tmp->left!=NULL){ par=tmp;tmp=tmp->left;}
+			ptr->val=tmp->val;
+			par->left=tmp->right;
+			free(tmp);
+		}
+		return;
+
 	}
-	else{
-		ptr->parent->left=ptr->left;
+	else if(ptr->left!=NULL){
+		tmp=ptr->left;
+		par=ptr;
+		if (tmp->right==NULL){
+			ptr->val=tmp->val;
+			ptr->left=tmp->left;
+			free(tmp);
+		}
+		else{
+			while(tmp->right!=NULL){ par=tmp;tmp=tmp->right;}
+			ptr->val=tmp->val;
+			par->right=tmp->left;
+			free(tmp);
+		}
+		return;
+	}
+	if (ptr==root){
 		free(ptr);
-	}
+		root=NULL;
 	
+	}
+	else{	
+		if (par->right==ptr) {par->right=NULL; free(ptr);}
+		else if (par->left==ptr) {par->left=NULL; free(ptr);}	
+	}
+
 }
+	
 int main(){
 	int i ;
 	char x;
@@ -81,7 +111,7 @@ int main(){
 		switch(x){
 			case 's':
 				scanf("%d",&i);
-				scan(root,i);
+				if (scan(root,i)) printf("found");
 				break;
 			case 'i':
 				scanf("%d",&i);
