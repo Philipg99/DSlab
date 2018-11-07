@@ -17,7 +17,7 @@ void print(int a[])
 void deq()
 {
 	if(f!=r) f=(f+1)%size;
-	if (f==r) f=r=-1;
+	else if (f==r) f=r=-1;
 }
 
 void enq(int a[],int x)

@@ -28,7 +28,7 @@ int main(){
 				ptr=head->next->next;
 				free(head->next);
 				head->next=ptr;}
-				else printf("empty queue")
+				else printf("empty queue");
 				break;
 			case 'p':
 			
