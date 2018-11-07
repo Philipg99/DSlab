@@ -18,6 +18,8 @@ int main(){
 	do{
 		scanf("%c",&x);
 		switch(x){
+			getchar();
+			printf("i:insert d:delete p:print :");
 			case 'i':
 				scanf("%d",&i);
 				ptr=head->right;

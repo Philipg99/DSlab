@@ -27,6 +27,7 @@ void eqb(int i){
 	while (ptr->next!=NULL) ptr=ptr->next;
 	ptr->next= (struct Node*)malloc(sizeof(struct Node));
 	ptr->next->val=i;
+	ptr->next->next=NULL;
 }
 
 void eqf(int i){

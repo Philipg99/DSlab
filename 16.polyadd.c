@@ -26,6 +26,13 @@ int main(){
 
 	}while(e>0);
 
+	ptr=head1->next;
+	while(ptr!=NULL){
+		printf("%dx^%d ",ptr->co,ptr->ex);
+		ptr=ptr->next;
+	}
+	printf("\n");
+
 	ptr=head2;
 	do{
 		scanf("%d %d",&c,&e);
@@ -51,6 +58,13 @@ int main(){
 		}
 	}
 
+	ptr=head2->next;
+	while(ptr!=NULL){
+		printf("%dx^%d ",ptr->co,ptr->ex);
+		ptr=ptr->next;
+	}
+
+	printf("\n");
 	ptr=head1->next;
 	while(ptr!=NULL){
 		printf("%dx^%d ",ptr->co,ptr->ex);

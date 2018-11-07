@@ -35,8 +35,7 @@ int main()
     do
     {
 	getchar();
-        printf("\nInsert Delete Print Exit\n %d %d\n",f,r);
-	for (i=0;i<size;i++) printf("%d ",a[i]); printf("\n");
+        printf("\ni:Insert d:Delete p:Print e:Exit :",);
         scanf("%c", &ch);
         switch (ch)
         {

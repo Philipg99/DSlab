@@ -35,7 +35,7 @@ int main(){
 	char eqn[100],var[100];
 	printf("enter the number of variables: "); scanf("%d",&nvar);
 	printf("enter the variables: ");for(i=0;i<nvar;i++) scanf("%f",v+i);
-	printf("enter expertion: ");scanf("%s",eqn);
+	printf("enter postfix expertion: ");scanf("%s",eqn);
 	for(i=0;i<strlen(eqn);i++){
 		if (isvar(eqn[i])) var[vp++]=eqn[i];
 		if (isexp(eqn[i])) {

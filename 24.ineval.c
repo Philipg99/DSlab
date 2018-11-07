@@ -44,7 +44,7 @@ int main(){
 	char eqn[100],ops[100],var[100];
 	printf("enter the number of variables: "); scanf("%d",&nvar);
 	printf("enter the variables: ");for(i=0;i<nvar;i++) scanf("%f",v+i);
-	printf("enter expertion: ");scanf("%s",eqn);
+	printf("enter infix expertion: ");scanf("%s",eqn);
 	ops[0]='(';
 	for(i=1;i<strlen(eqn);i++){
 		if (isvar(eqn[i])) var[vp++]=eqn[i];
