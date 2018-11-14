@@ -32,7 +32,7 @@ int main(){
 			case 'i':
 				i=0;
 				scanf("%ld",&num);
-				while(ht[(hash(num)+i*i)%100]!=LONG_MIN ||ht[(hash(num)+i*i)%100]!=LONG_MAX  ) i++;
+				while(ht[(hash(num)+i*i)%100]!=LONG_MIN && ht[(hash(num)+i*i)%100]!=LONG_MAX  ) i++;
 				ht[(hash(num)+i*i)%100]=num;
 				break;
 			case 'd':
