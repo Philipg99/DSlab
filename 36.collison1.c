@@ -21,17 +21,27 @@ int main(){
 		scanf("%c",&x);
 		switch(x){
 			case 's':
+				i=0;
 				scanf("%ld",&num);
-				if(ht[hash(num)%100]==num) printf("found\n");
+				while(ht[(hash(num)+i)%100]!=LONG_MIN){
+					if (ht[(hash(num)+i)%100]==num){ printf("found");break;}
+					i++;
+				}
+				
 				break;
 			case 'i':
+				i=0;
 				scanf("%ld",&num);
-				ht[hash(num)%100]=num;
+				while(ht[(hash(num)+i)%100]!=LONG_MIN ||ht[(hash(num)+i)%100]!=LONG_MAX  ) i++;
+				ht[(hash(num)+i)%100]=num;
 				break;
 			case 'd':
+				i=0;
 				scanf("%ld",&num);
-				ht[hash(num)%100]=LONG_MIN;
-				break;
+				while(ht[(hash(num)+i)%100]!=LONG_MIN){
+					if (ht[(hash(num)+i)%100]==num){ht[(hash(num)+i)%100]=LONG_MAX ;break;}
+					i++;
+				}
 
 		};
 	}while(x!='e');	

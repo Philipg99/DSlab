@@ -12,12 +12,11 @@ int main(){
 	struct Node *head,*ptr;
 	head=(struct Node*)malloc(sizeof(struct Node));
 	head->next=NULL;
-	
+	printf("i:insert d:delete p:print e:exit\n");
 	do{
 		scanf("%c",&x);
 		switch(x){
 			getchar();
-			printf("i:insert d:delete p:print e:exit:");
 			case 'i':
 				scanf("%d",&i);
 				ptr=head;

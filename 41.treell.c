@@ -109,6 +109,8 @@ int main(){
 	do{
 		scanf("%c",&x);
 		switch(x){
+			getchar();
+			printf("i:insert s:scan d:delete p:print e:exit:");
 			case 's':
 				scanf("%d",&i);
 				if (scan(root,i)) printf("found");

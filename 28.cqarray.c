@@ -32,10 +32,10 @@ int main()
     int n,i;
     char ch;
     int a[size]={0,0,0,0,0};
+    printf("\ni:Insert d:Delete p:Print e:Exit \n");
     do
     {
 	getchar();
-        printf("\ni:Insert d:Delete p:Print e:Exit :",);
         scanf("%c", &ch);
         switch (ch)
         {

@@ -18,9 +18,8 @@ void print(int a[],int i){
 int main(){
 	char p;
 	int a[10],i=0,x,c;
-	do{
-	
 	printf("1:pop\n2:push\n3:print\n4:exit\n");
+	do{
 	scanf("%d",&c);
 	switch(c){
 		case 1: pop(&i); break;

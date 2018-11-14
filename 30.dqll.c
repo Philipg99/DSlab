@@ -43,10 +43,9 @@ int main(){
 	int i;
 	head=(struct Node*)malloc(sizeof(struct Node));
 	head->next=NULL;
-	
+	printf("1.enqueue front\n2.enqueue back\n3.dequeue front\n4.dequeue back\n5.print\n");
 	do{
 		getchar();
-		printf("1.enqueue front\n2.enqueue back\n3.dequeue front\n4.dequeue back\n5.print\n");
 		scanf("%c",&x);
 		switch(x){
 

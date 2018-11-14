@@ -106,11 +106,12 @@ int main(){
 	char x;
 	root=NULL;
 	printf("\n");
+	printf("i:insert s:scan d:delete p:print e:exit \n");
 	do{
 		scanf("%c",&x);
 		switch(x){
 			getchar();
-			printf("i:insert s:scan d:delete p:print e:exit :");
+			
 			case 's':
 				scanf("%d",&i);
 				if (scan(root,i)) printf("found");

@@ -14,12 +14,12 @@ int main(){
 	head=(struct Node*)malloc(sizeof(struct Node));
 	head->right=head;
 	head->left=head;
-	
+	printf("i:insert d:delete p:print :");
 	do{
 		scanf("%c",&x);
 		switch(x){
 			getchar();
-			printf("i:insert d:delete p:print :");
+			
 			case 'i':
 				scanf("%d",&i);
 				ptr=head->right;

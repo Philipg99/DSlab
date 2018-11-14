@@ -2,12 +2,13 @@
 #include<limits.h>
 
 long hash(long n){
-	int sum=0;
+	int sum=0,i=1;
 	while (n>0){
 		sum+=n%10;
+		sum*=i++;
 		n/=10;
 	}
-	return sum;
+	return (sum);
 	
 }
 

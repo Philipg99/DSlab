@@ -19,10 +19,9 @@ void print(int a[],int i){
 int main(){
 	char c;
 	int a[10],i=0,x;
-	
+	printf("e:enqueue\nd:dequeue\np:print\nx:exit\n");
 	do{
 	getchar(); 
-	printf("e:enqueue\nd:dequeue\np:print\nx:exit\n");
 	scanf("%c",&c);
 	switch(c){
 		case 'd': deq(a,&i); break;

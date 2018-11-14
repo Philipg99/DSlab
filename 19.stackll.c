@@ -12,9 +12,9 @@ int main(){
 	struct Node *head,*ptr;
 	head=(struct Node*)malloc(sizeof(struct Node));
 	head->next=NULL;
+	printf("i:insert s:scan d:delete p:print e:exit\n");
 	do{
 		getchar();	
-		printf("i:insert s:scan d:delete p:print e:exit :");
 		scanf("%c",&x);
 		switch(x){
 			case 's':
