@@ -9,10 +9,10 @@ int main(){
 	
 	for(i=0;i<10;i++)
 		if(a[i]==x){
-			printf("found in index %d\n",a[i]);
+			printf("Found at Index %d\n",a[i]);
 			return 0;
 		}
 	
-	printf("not in list\n");
+	printf("Not in List\n");
 	return 0;
 }
