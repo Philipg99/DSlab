@@ -1,5 +1,5 @@
 # DSlab
-All the programs in the KTU S3 Data Structue lab
+All the programs in the KTU S3 Data Structure lab
 
 01  Sequential search  
 
